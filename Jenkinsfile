@@ -9,8 +9,7 @@ pipeline {
                }
           }
           stage('Backend Setup') {
-               steps {
-                 sh 'cd 01418442_WebTech'
+               steps {                 
                     dir('ShabuNow') {
                         sh 'docker run --rm \
                         -u "$(id -u):$(id -g)" \
@@ -26,7 +25,7 @@ pipeline {
           }
           stage('Testing') {
                steps {
-                 sh 'cd 01418442_WebTech'
+                 
                     dir('ShabuNow') {
                         sh 'vendor/bin/sail artisan test'                                             
                     }
@@ -35,7 +34,7 @@ pipeline {
           
           stage('Frontend Setup') {
                steps {
-                 sh 'cd 01418442_WebTech'
+                 
                     dir('ShabuNow-nuxt') {
                        sh 'npm install'                
                     }
@@ -43,7 +42,7 @@ pipeline {
           }
           stage('Deploy') {
                steps {
-                 sh 'cd 01418442_WebTech'
+                 
                     dir('ShabuNow-nuxt') {                     
                        sh 'npm run dev'
                     }
